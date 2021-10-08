@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="css/tabla.css">
+    <link rel="stylesheet" href="fonts/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@700&display=swap" rel="stylesheet">
+    <title>Registra Compra</title>
+</head>
+<body>
+    <h1>Tu cuerpo, Tu prioridad!</h1>
+    <div class="contenedor">
+    <h2>Registro de Compras</h2>
+    <form action="#" method="POST">
+        <label>Digite su cedula</label>
+        <input type="number" id="cedula" placeholder="Digite su cedula" >
+        <label>Digite el codigo de compra</label>
+        <input type="number" id="codigocom" placeholder="Digite el codigo de la compra">
+        <label>Digite la fecha</label>
+        <input type="date" id="fecha" placeholder="Digite la fecha">
+        <label>Digite el valor</label>
+        <input type="number" id="valor" placeholder="Digite el valor">
+        <label>Digite la forma de pago</label>
+            <select id="pago" class="controls">
+                <option>Seleccione una opción...</option>
+                <option value="Online">Online</option>
+                <option value="Contra-Entrega">Contra-Entrega</option>
+            </select>
+        <label>Digite el codigo de envio</label>
+        <input type="number" id="codigoenv" placeholder="Digite el codigo de envio"><br><br>
+        <button type="button" class="registrar" onclick="Registrar_Compra();">Registrar</button>
+    </form>
+</div>
+    <table class="tabla">
+        <th>Id</th>
+        <th>Cedula</th>
+        <th>Codigo Compra</th>
+        <th>Fecha</th>
+        <th>Valor</th>
+        <th>Pago</th>
+        <th>Codigo envio</th>
+        <tbody id="Tabla">
+        </tbody>
+    </table>
+</body>
+</html>
+<script>
+    var Compra=[];
+    function Registrar_Compra(){
+        var cedula= document.getElementById("cedula").value;
+        var codigocom= document.getElementById("codigocom").value;
+        var fecha= document.getElementById("fecha").value;
+        var valor= document.getElementById("valor").value;
+        var pago= document.getElementById("pago").value;
+        var codigoenv= document.getElementById("codigoenv").value;
+
+        Compra.push({
+            "cedula":cedula,
+            "codigocom":codigocom,
+            "fecha":fecha,
+            "valor":valor,
+            "pago":pago,
+            "codigoenv":codigoenv,
+        }
+            
+        );
+        Listar_Compras();
+    }
+   
+   function Listar_Compras(){
+       var Lista='';
+       for(var i=0;i<Compra.length;i++){
+            Lista +="<tr><td>"+i+"</td>";
+            Lista +="<td>"+Compra[i].cedula+"</td>";
+            Lista +="<td>"+Compra[i].codigocom+"</td>";
+            Lista +="<td>"+Compra[i].fecha+"</td>";
+            Lista +="<td>"+Compra[i].valor+"</td>";
+            Lista +="<td>"+Compra[i].pago+"</td>";
+            Lista +="<td>"+Compra[i].codigoenv+"</td></tr>";
+       }
+    document.getElementById('Tabla').innerHTML=Lista;
+   }
+
+</script>
